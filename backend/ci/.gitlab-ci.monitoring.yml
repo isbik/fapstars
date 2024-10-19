@@ -1,0 +1,10 @@
+stages:
+  - deploy
+
+deploy_monitoring:
+  stage: deploy
+  script:
+    - |
+      echo Deploy monitoring script
+  only:
+    - monitoring

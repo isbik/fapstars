@@ -1,0 +1,45 @@
+/* @import "../../../assets/variables.module.scss"; */
+
+.category-tab-switcher {
+  width: 100%;
+  height: 45px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  border-radius: 12px;
+  background-color: #191a1d;
+  flex-shrink: 0;
+  padding: 4px;
+
+  &-svg {
+    fill: white;
+  }
+
+  &-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 12px;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    background: transparent;
+    border: none;
+    width: 100%;
+    padding: 4px;
+    flex-shrink: 0;
+
+    transition: all 0.3s ease;
+    &-selected {
+      background: #a51195;
+      /* border: 1px solid $primary-color; */
+      color: white;
+    }
+  }
+}
+
+.tabs-2 {
+  grid-template-columns: 1fr 1fr;
+}

@@ -1,0 +1,13 @@
+{
+  "extends": "@adonisjs/tsconfig/tsconfig.app.json",
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "././build/.tsbuildinfo",
+    "rootDir": "./",
+    "strict": true,
+    "skipDefaultLibCheck": true,
+    "target": "es2021"
+  },
+  "include": ["./**/*"],
+  "exclude": ["node_modules", "build"]
+}

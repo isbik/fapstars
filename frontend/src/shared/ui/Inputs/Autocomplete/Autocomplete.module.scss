@@ -1,0 +1,18 @@
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+  position: absolute;
+  padding: 8px;
+  background-color: var(--input-bg-color);
+  z-index: 50;
+  width: 100%;
+  margin-top: 8px;
+  max-height: 150px;
+  border-radius: 8px;
+}
+.option {
+  display: flex;
+  align-items: center;
+}

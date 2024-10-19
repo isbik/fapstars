@@ -1,0 +1,8 @@
+tls_server_config:
+  cert_file: ../cert/server.crt
+  key_file: ../cert/server.key
+
+# Usernames and passwords required to connect to Prometheus.
+# Passwords are hashed with bcrypt
+basic_auth_users:
+  foo: $2a$12$KHIQUSAM5VM.bsdm5vY9LePR0sZCCwq9seiShLx/EbRKGSXXRNfF6

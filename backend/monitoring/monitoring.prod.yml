@@ -1,0 +1,92 @@
+version: '3.8'
+name: monitoring
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+#      - '--web.config.file=/etc/prometheus/web-config.yml'
+#    ports:
+#      - 9090:9090
+    restart: unless-stopped
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - ./cert:/etc/cert
+      - prometheus_data:/prometheus
+
+  # To be moved to another host
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=$GRAFANA_PASSWORD
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/dashboards-definitions:/var/lib/grafana/dashboards
+      - grafana_data:/var/lib/grafana
+
+  loki:
+    hostname: loki
+    image: grafana/loki:latest
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - loki_data:/loki
+      - ./loki/retention-config.yml:/etc/loki/retention-config.yaml
+  loki-nginx:
+    container_name: loki-nginx
+    image: nginx:1.27.1
+    volumes:
+      - ./loki-nginx:/etc/nginx
+    command: ["/bin/sh", "-c", "chmod +x /etc/nginx/setup-basic-auth.sh && /etc/nginx/setup-basic-auth.sh && nginx -g 'daemon off;'"]
+    ports:
+      - "3100:3100"
+    env_file:
+      - ../.env
+
+  node-exporter:
+    container_name: node-exporter
+    image: quay.io/prometheus/node-exporter:latest
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+      - /:/host:ro
+    command:
+      - '--path.rootfs=/host'
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - --collector.filesystem.ignored-mount-points
+      - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
+    restart: always
+
+  # to be moved to another host
+  blackbox-exporter:
+    container_name: blackbox-exporter
+    image: prom/blackbox-exporter
+#    ports:
+#      - 9115:9115
+    command:
+      - --config.file=/etc/blackbox/blackbox.yml
+    volumes:
+      - ./blackbox/blackbox.yml:/etc/blackbox/blackbox.yml
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+
+    volumes:
+      - /:/rootfs:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+
+
+volumes:
+  grafana_data:
+  prometheus_data:
+  loki_data:

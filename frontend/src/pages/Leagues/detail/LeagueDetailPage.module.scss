@@ -1,0 +1,216 @@
+.header {
+  width: 100%;
+  margin-top: 32px;
+  position: relative;
+  border-radius: 5px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.avatarWrapper {
+  position: relative;
+}
+
+.avatarEdit {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  z-index: 100;
+}
+
+.subtitleWrapper {
+  display: flex;
+  justify-content: space-between;
+
+  .threadsLink {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: -0.23000000417232513px;
+    color: #918d98;
+  }
+}
+
+.place {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+}
+.photo {
+  width: 116px;
+  height: 116px;
+  border-radius: 50%;
+}
+.info {
+  margin-top: 32px;
+  display: flex;
+  gap: 24px;
+  margin-bottom: 20px;
+  width: 100%;
+
+  .balanceData {
+    display: flex;
+    gap: 8px;
+    align-items: center; // центр по вертикали
+    font-size: 17px;
+
+    span {
+      font-size: 15px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px; /* 133.333% */
+      letter-spacing: -0.23px;
+    }
+  }
+
+  .members {
+    .title {
+      font-size: 17px;
+    }
+  }
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 57px;
+
+  .linkBtn {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.threads {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 16px 0;
+}
+.tab {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  min-height: 45px;
+}
+.rating {
+  text-align: left;
+  font-size: 17px;
+  margin-right: auto;
+  font-style: normal;
+  font-weight: 590;
+}
+
+.nomination {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .fap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: antiquewhite;
+  }
+
+  .fap:hover {
+    background-color: palevioletred;
+    cursor: pointer;
+    transition: 0.2s ease;
+    color: white;
+  }
+  .queen {
+    margin-top: 16px;
+    color: #fff;
+    text-align: center;
+
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 590;
+    line-height: 28px; /* 127.273% */
+    letter-spacing: -0.26px;
+  }
+  .queenSubtitle {
+    margin-top: 4px;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 590;
+    line-height: 20px; /* 133.333% */
+    letter-spacing: -0.23px;
+  }
+}
+
+.x {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.exit {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #c5c5c5;
+  cursor: pointer;
+}
+
+.country {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #f6f6f6;
+
+  img {
+    width: 22px;
+    height: 28px;
+  }
+}
+
+.leaveFromLeague {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 10px;
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  .text {
+    font-size: 17px;
+    // font-weight: 590;
+    line-height: 22px;
+    letter-spacing: -0.4300000071525574px;
+    text-align: center;
+  }
+}

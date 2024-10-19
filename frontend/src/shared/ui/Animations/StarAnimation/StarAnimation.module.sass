@@ -1,0 +1,20 @@
+.starContainer
+    opacity: 0
+    transition: opacity 1s ease-in-out
+
+    &.visible
+        opacity: 1
+
+    & svg
+        filter: drop-shadow(0 0 25px rgba(213, 55, 163, 0.5))
+        animation: pulse 2s infinite
+
+@keyframes pulse
+    0%
+        filter: drop-shadow(0 0 5px rgba(213, 55, 163, 0.5))
+
+    50%
+        filter: drop-shadow(0 0 20px rgba(213, 55, 163, 1))
+
+    100%
+        filter: drop-shadow(0 0 5px rgba(213, 55, 163, 0.5))

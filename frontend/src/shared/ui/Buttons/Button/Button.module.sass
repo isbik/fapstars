@@ -1,0 +1,80 @@
+.button
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	gap: 10px
+
+	width: 100%
+
+	font-size: 16px
+	font-weight: 600
+	font-style: normal
+	line-height: normal
+	text-align: center
+
+	min-width: 124px
+	padding: 14px
+	border: 1px solid transparent
+	border-radius: 10px
+
+	transition: background-color 0.1s ease-out
+
+	&:hover
+		cursor: pointer
+
+	&:visited
+		color: #fff
+
+	svg
+		margin-right: 8px
+
+	&_primary
+		color: #fff
+
+		background-color: var(--primary-color)
+
+		&:hover
+			background-color: var(--primary-color-hover)
+
+		&:active
+			background-color: var(--primary-color-active)
+
+	&_alter
+		color: #fff
+
+		background-color: var(--primary-color-alter)
+		border: 0
+		border-radius: 5px
+
+		&:hover
+			color: var(--primary-color-hover)
+
+			svg
+				fill: var(--primary-color-hover)
+
+		&:active
+			background-color: var(--primary-color-dirty)
+
+	&_outline
+		border: 1px solid var(--primary-color)
+
+		color: var(--text-color)
+		background-color: transparent
+
+		&:hover
+			color: var(--primary-color)
+			// background-color: var(--primary-color);
+			background-color: transparent
+
+		&:active
+			background-color: var(--primary-color-active)
+
+.button:disabled,
+.button[disabled]
+	background-color: var(--primary-color-dirty)
+
+	&:hover
+		background-color: var(--primary-color-dirty)
+
+	&:active
+		background-color: var(--primary-color-dirty)

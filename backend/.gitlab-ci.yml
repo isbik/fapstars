@@ -1,0 +1,18 @@
+#stages:
+#  - deploy
+
+#deploy_app:
+#  stage: deploy
+#  trigger:
+#    include: ci/.gitlab-ci.back.yml
+#    strategy: depend
+#  only:
+#    - main
+
+#deploy_monitoring:
+#  stage: deploy
+#  trigger:
+#    include: ci/.gitlab-ci.monitoring.yml
+#    strategy: depend
+#  only:
+#    - monitoring

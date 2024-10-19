@@ -1,0 +1,75 @@
+.thread {
+  display: flex;
+  justify-content: space-between;
+  background-color: #191a1d;
+
+  padding: 8px 16px 8px 16px;
+  border-radius: 10px;
+
+  .threadWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .userAndContent {
+      display: flex;
+      margin-bottom: 6px;
+      gap: 16px;
+
+      .pic {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+
+      .textWrapper {
+        gap: 2px;
+        display: flex;
+        flex-direction: column;
+      }
+      .username {
+        font-size: 17px;
+        font-weight: 590;
+        line-height: 22px;
+        letter-spacing: -0.4300000071525574px;
+      }
+
+      .text {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 20px;
+        letter-spacing: -0.23000000417232513px;
+        color: #918d98;
+      }
+    }
+  }
+
+  .timeAgo {
+    font-size: 13px;
+    font-weight: 510;
+    line-height: 18px;
+    letter-spacing: -0.07999999821186066px;
+    text-align: center;
+  }
+
+  .feedback {
+    display: flex;
+    gap: 32px;
+    margin-top: 6px;
+
+    /* flex-direction: column; */
+
+    font-size: 13px;
+    font-weight: 510;
+    line-height: 18px;
+    letter-spacing: -0.07999999821186066px;
+    text-align: center;
+
+    .like {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+  }
+}

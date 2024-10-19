@@ -1,0 +1,85 @@
+version: '3.8'
+
+name: fapstars-backend-prod
+
+x-def-logging: &default-logging
+  logging:
+    driver: "loki"
+    options:
+      loki-url: "http://${LOKI_USER}:${LOKI_PASSWORD}@localhost:3100/loki/api/v1/push"
+      loki-batch-size: "100"
+      loki-retries: 2
+      loki-max-backoff: 1000ms
+      loki-timeout: 1s
+
+services:
+  nginx:
+    <<: *default-logging
+    container_name: nginx
+    image: nginx:1.23.3
+    volumes:
+      - ./ci/nginx/:/etc/nginx/:ro
+    ports:
+      - "80:80"
+      - "443:443"
+  backend:
+    <<: *default-logging
+    build:
+      context: ./
+      dockerfile: Dockerfile.prod
+    ports:
+      - '${PORT}:$PORT'
+    env_file: .env
+    depends_on:
+      - redis-queue
+      - redis-cache
+
+  pgadmin:
+    <<: *default-logging
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_USER}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - 30131:80
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+
+  redis-queue:
+    <<: *default-logging
+    image: redis:7.4
+    container_name: redis_queue
+    ports:
+      - '${QUEUE_REDIS_PORT}:${QUEUE_REDIS_PORT}'
+    volumes:
+      - redis-queue-data:/data
+    command: ['redis-server', '--appendonly', 'yes', '--requirepass', '$QUEUE_REDIS_PASSWORD', '--port', '$QUEUE_REDIS_PORT']
+
+  redis-cache:
+    <<: *default-logging
+    image: redis:7.4
+    container_name: redis_cache
+    ports:
+      - '${REDIS_PORT}:${REDIS_PORT}'
+    volumes:
+      - redis-cache-data:/data
+    command: ['redis-server', '--appendonly', 'yes', '--requirepass', '$REDIS_PASSWORD', '--port', '$REDIS_PORT']
+
+  redis-websocket-session:
+    <<: *default-logging
+    image: redis:7.4
+    container_name: redis_websocket_session
+    ports:
+      - '${WEBSOCKET_SESSION_REDIS_PORT}:${WEBSOCKET_SESSION_REDIS_PORT}'
+    volumes:
+      - redis-websocket-session-data:/data
+    command: ['redis-server', '--appendonly', 'yes', '--requirepass', '$WEBSOCKET_SESSION_REDIS_PASSWORD', '--port', '$WEBSOCKET_SESSION_REDIS_PORT']
+
+volumes:
+  redis-queue-data:
+  redis-cache-data:
+  redis-websocket-session-data:
+  pgadmin-data:

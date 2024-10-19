@@ -1,0 +1,16 @@
+version: "3.8"
+
+# should build only when new certificate needed
+
+services:
+  certbot:
+    ports:
+      - "6000:80"
+
+    # certbot puts new certs in this directory
+    volumes:
+      - ./certs:/etc/letsencrypt
+    build:
+      context: ./
+      dockerfile: Dockerfile
+

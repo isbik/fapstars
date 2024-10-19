@@ -1,0 +1,83 @@
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../../assets/fonts/SFPRODISPLAYREGULAR.OTF') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+:root {
+  --primary-color: #a51195;
+  --primary-color-hover: #a51195;
+  --primary-color-active: #72266b;
+  --stand-color: #191a1d;
+  --text-color: #fff;
+  --text-sub-color: #918d98;
+  --text-sub-color-light: #c2bccb;
+  --padding-h: 16px;
+  --text-size: 17px;
+  --input-bg-color: #2a2b30;
+  --input-color: #fff;
+  --border-color: transparent;
+}
+body {
+  background: linear-gradient(180deg, #0a000c 39.08%, #760b68 100%);
+  font-family: 'SF Pro Display', sans-serif;
+  min-height: 100vh;
+  height: 100%;
+  color: var(--text-color);
+  font-size: var(--text-size);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.container {
+  padding: 16px;
+  padding-bottom: 32px;
+}
+
+.image {
+  position: relative;
+}
+
+.image img {
+  position: relative;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+p {
+  line-height: 28px;
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--text-color);
+}
+
+a:active {
+  color: var(--primary-color-active);
+}

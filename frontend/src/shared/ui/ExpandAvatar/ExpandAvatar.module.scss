@@ -1,0 +1,27 @@
+.fullscreen {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 999;
+	transition: opacity 0.3s ease; /* Fade in/out effect */
+}
+
+.fullscreenImage {
+	transition: top 0.5s ease, left 0.5s ease, width 0.5s ease, height 0.5s ease;
+}
+
+.closeButton {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	width: fit-content;
+	z-index: 1001;
+	padding: 16px 20px;
+	min-width: auto;
+}
+

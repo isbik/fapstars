@@ -1,0 +1,27 @@
+server {
+	listen 80 default_server;
+	listen [::]:80 default_server;
+
+	root /var/www/html;
+
+	index index.html index.htm index.nginx-debian.html;
+
+	server_name _;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+}
+server {
+
+	root /var/www/fapstars/frontend;
+
+  listen 443 default_server;
+  ssl_certificate /etc/nginx/certs/fapstars.online/fullchain.pem;
+  ssl_certificate_key /etc/nginx/certs/fapstars.online/privkey.pem;
+
+  location / {
+    return 200 hi;
+  }
+}
+

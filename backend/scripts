@@ -1,0 +1,20 @@
+dev
+ssh -o StrictHostKeyChecking=no -i ~/cloudru/ssh/key 87.242.87.19 -l user
+
+prod
+same
+
+CLEAN
+docker container prune
+docker volume prune
+docker volume rm $(docker volume ls -q)
+
+START
+cp .env.prod .env
+docker compose -f docker-compose.prod.yml --env-file=.env.prod up -d
+docker compose -f monitoring/monitoring.prod.yml --env-file=.env.prod up -d
+
+RESTART ONE SERVICE (one command)
+export SERVICE_NAME=
+docker compose --env-file=.env.prod -f docker-compose.prod.yml down $SERVICE_NAME && \
+docker compose --env-file=.env.prod -f docker-compose.prod.yml up $SERVICE_NAME -d

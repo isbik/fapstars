@@ -1,0 +1,1 @@
+export const COINS_TO_VERIFY_LEAGUE = 100_000;
